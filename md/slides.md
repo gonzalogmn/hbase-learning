@@ -123,7 +123,7 @@ class: center, middle, slide-title
 * HBase Region Server
 * Zookeeper
 
-![architecture](./img/architecture2.png "HBase architecture")
+![architecture](./img/hbase-architecture.png "HBase architecture")
 
 ---
 class: center, middle, slide-title
