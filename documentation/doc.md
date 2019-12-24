@@ -56,7 +56,7 @@ HBase tiene como componentes principales:
 
 Cada región contiene todas las filas entre el *row key* inicial y el final, definidos para dicha región.
 
-![architecture](./../img/architecture2.png "HBase architecture")
+![architecture](./../img/hbase-architecture.png "HBase architecture")
 
 La arquitectura consiste en los siguientes componentes principales:
 
