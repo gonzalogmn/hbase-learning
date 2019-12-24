@@ -63,19 +63,12 @@ La arquitectura consiste en los siguientes componentes principales:
 ### HMaster
 
 Actúa monitorizando todos los *Region Server* del cluster, asignandoles las regiones y como interfaz para todos los cambios en metadatos. 
-
-Los métodos en los que va a actuar el HMaster son:
-- Table (createTable, removeTable...).
-- ColumnFamily (addColumn, modifyColumn...).
-- Region (move, assign...).
+- Asignación de regiones
+- Load balancing
+- Recuperación de Region Servers
 
 ### HBase Regions Servers
-
-### HBase Regions
-
-### ZooKeeper
-
-### HDFS
+En los Region Servers se sirven los datos.
 
 
 ## Comandos sobre HBase
