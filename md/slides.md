@@ -60,13 +60,6 @@ class: center, middle, slide-title
 
 ---
 
-## 1.2. ¿Qué es una BD columnar o *wide column store*?
-
-* Ejemplo de base de datos orientada a columnas, como HBase:
-
-![columnar](./img/columnar.png "Column-oriented")
-
----
 
 ## 1.3. ¿Cuándo usar HBase?
 
