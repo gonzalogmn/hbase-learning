@@ -30,12 +30,12 @@ Algunas BBDD columares son HBase, Cassandra o Bigtable.
 * Cuando queremos replicación de las tablas, para hacer frente a caídas.
 * No es la mejor opción para aplicaciones transaccionales o de analíticas relacionales, con queries complejas.
 
-
 ## Estructura de HBase
 
 * **Table:** HBase organiza los datos en tablas.
 * **Row:** Los datos se almacenan en filas. Cada fila se identifica unívocamente mediante su *row key*. Las *row keys* no tienen tipos, siempre se crean como un array de bytes.
-* **Column Family:** Los datos de una fila se agrupan en *column families*. Esta agrupación afecta también en la forma en la que HBase almacena físicamente los datos. Las familias de columnas se definen en el momento de crear la tabla, porque después es muy complicado modificarlas. Todas las filas de la tabla tienen las mismas familias de columnas.
+* **Column Family:** Los datos de una fila se agrupan en *column families*. Esta agrupación afecta también en la forma en la que HBase almacena físicamente los datos. Las familias de columnas se definen en el momento de crear la tabla, porque después es complicado modificarlas. Todas las filas de la tabla tienen las mismas familias de columnas.
+Todas las columnas que pertenezcan a la misma familia, estarán almacenadas físicamente próximas.
 * **Column qualifier:** dentro de una familia de columnas tenemos las columnas o *column qualifier*. A diferencia de las familias de columnas, estas no se definen en el momento de crear la tabla, y no tienen que ser las mismas para todas las filas.
 * **Cell:** la combinación de *row key*, *column family* y *column qualifier* identifica una *cell*. Las celdas no tienen tipo de dato, se tratan como un array de bytes.
 * **Timestamp:** los valores de una celda están versionados. Por defecto, el número de versiones almacenado son 3.
@@ -50,9 +50,10 @@ A veces es más fácil entender el modelo de datos como un *map* multidimensiona
 ## Arquitectura de HBase
 
 HBase tiene como componentes principales:
-* HMaster Server
-* HBase Region Server
-* Zookeeper
+* HMaster Server: responsable de las tareas administrativas. No requiere de muchos recursos. En un cluster grande pueden existir varios Master (solo actúa uno y el resto se sincronizan).
+* HBase Region Server: una región es un rango de filas almacenadas de forma contigua
+* Zookeeper: servicio centralizado de configuración, nombrado y sincronización.
+* Data storage system: HBase no está atado a HDFS, puede usar otros sistemas como S3.
 
 Cada región contiene todas las filas entre el *row key* inicial y el final, definidos para dicha región.
 
@@ -140,6 +141,24 @@ Lo más importante a definir es la estructura de la *row key*. Para ello, hay qu
 * La atomicidad se garantiza a nivel de fila. No hay atomicidad garantizada entre filas (no hay transacciones multifila).
 * Las *column qualifiers* son dinámicas y pueden ser definidas en tiempo de escritura.
 
+## Diseño de *rowkey*
+
+Hay que saber que en HBase, la unidad de separación es la *column family*.
+
+![diseno_rowkey](./../img/diseno_rowkey.png "Diseño")
+
+![diseno_rowkey_performance](./../img/diseno_rowkey_performance.png "Diseño")
+
+
+### *Tall-Narrow* vs *Flat-Wide*
+
+* *Flat-Wide*: una tabla con pocas filas pero muchas columnas.
+![flat](./../img/flat-wide.png "flat-wide")
+
+* *Tall-Narrow*: una tabla con pocas columnas pero muchas filas.
+![tall](./../img/tall-narrow.png "tall-narrow")
+
+
 
 
 ## Ejemplo: Twitter
@@ -207,4 +226,8 @@ Aquí, la *row key* contiene el *follower* y *followed*. Ahora, obtener una list
 Para hacer *unfollow* o contestar la pregunta ¿El usuario "A" sigue a "B"? se convierte en una operación *Delete* o *Get*, sin tener que iterar por la lista entera de usuarios en la fila.
 
 ![twitter-2-2](./../img/twitter-2-2.png "Tabla twitter opción 2.2")
+
+
+
+
 
