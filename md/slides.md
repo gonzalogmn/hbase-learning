@@ -50,8 +50,6 @@ class: center, middle, slide-title
 
 * Es un tipo de base de datos NoSQL que almacena los datos en columnas en lugar de filas, con el objetivo de poder leer y escribir datos de manera eficiente, disminuyendo el tiempo que se tarda en devolver el resultado de una consulta.
 
-* Algunas BBDD columares son HBase, Cassandra o Bigtable.
-
 ---
 
 ## 1.2. ¿Qué es una BD columnar o *wide column store*?
@@ -79,8 +77,6 @@ class: center, middle, slide-title
 * Cuando tenemos muchas versiones de un dataset y queremos almacenarlas todas.
 
 * HBase está diseñado para tener lecturas y escrituras consistentes. Es decir, una vez que se realiza una escritura, todas las lecturas sobre ese dato devolverán el mismo valor. Esto es algo que Cassandra no cumple, es eventualmente consistente.
-
-* Cuando queremos replicación de las tablas, para hacer frente a caídas.
 
 * No es la mejor opción para aplicaciones transaccionales o de analíticas relacionales, con queries complejas.
 
@@ -202,6 +198,24 @@ class: center, middle, slide-title
 * ¿Qué información debe contener las celdas?
 
 * ¿Cuántas versiones deben almacenarse para cada celda?
+
+---
+
+## 5.1. Diseño de *rowkey*
+
+![diseno_rowkey](./../img/diseno_rowkey.png "Diseño")
+
+![diseno_rowkey_performance](./../img/diseno_rowkey_performance.png "Diseño")
+
+---
+
+# 5.2. *Tall-Narrow* vs *Flat-Wide*
+
+* *Flat-Wide*: una tabla con pocas filas pero muchas columnas.
+![flat](./../img/flat-wide.png "flat-wide")
+
+* *Tall-Narrow*: una tabla con pocas columnas pero muchas filas.
+![tall](./../img/tall-narrow.png "tall-narrow")
 
 ---
 class: center, middle, slide-title

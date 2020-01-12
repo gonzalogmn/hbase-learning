@@ -24,6 +24,7 @@ Lo habitual para mejorar el rendimiento en estos casos es utilizar un índice.
 * Ejemplo de base de datos orientada a columnas, como HBase:
 Aquí, los datos se almacenan por columnas.
 Podría parecer que un sistema columnar, es como un sistema de filas, pero con un índice por cada columna, pero no es así.
+*An indexed column in a row-store and a regular column in a column-store are very different data structures: an index maps column values to tuple IDs while a column maps tuple IDs to column values*
 
 ![columnar](./../img/columnar.png "Column-oriented")
 
