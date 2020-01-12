@@ -9,17 +9,23 @@ HBase está desarrollado en Java y se inspira en *Bigtable* de Google
 
 ### ¿Qué es una base de datos columnar o *wide column store*?
 
-Es un tipo de base de datos NoSQL que almacena los datos en columnas en lugar de filas, con el objetivo de poder leer y escribir datos de manera eficiente, reduciendo el tiempo que se tarda en devolver el resultado de una consulta.
+Es un tipo de base de datos NoSQL que almacena los datos en columnas en lugar de filas, con el objetivo de poder leer y escribir datos de manera eficiente, reduciendo el tiempo que se tarda en devolver el resultado de determinadas consultas.
 
 Algunas BBDD columares son HBase, Cassandra o Bigtable.
 
 * Ejemplo de base de datos orientada a filas:
+Este sistema está pensado para devolver de manera eficiente los datos de una fila, con las menos operaciones necesarias.
+
+Sin embargo, las base de datos orientadas a filas no son eficientes realizando operaciones que impliquen devolver muchas filas, o que tenga que recorrer muchas filas. Por ejemplo, devolver todas las personas con salario entre 20.000 y 30.000 (para esto, la base de datos debe hacer un *full scan*. Lo habitual para mejorar el rendimiento en estos casos es utilizar un índice.
 
 ![rdbs](./../img/rdbs.png "Row-oriented")
 
 * Ejemplo de base de datos orientada a columnas, como HBase:
+Aquí, los datos se almacenan por columnas.
+Podría parecer que un sistema columnar, es como un sistema de filas, pero con un índice por cada columna, pero no es así.
 
 ![columnar](./../img/columnar.png "Column-oriented")
+
 
 ## ¿Cuándo usar HBase?
 
@@ -27,7 +33,6 @@ Algunas BBDD columares son HBase, Cassandra o Bigtable.
 * Cuando los datos se reciben de diferentes orígenes de datos y estos están semi o no estructurados (no como en una RDBMS).
 * Cuando tenemos muchas versiones de un dataset y queremos almacenarlas todas.
 * HBase está diseñado para tener lecturas y escrituras consistentes. Es decir, una vez que se realiza una escritura, todas las lecturas sobre ese dato devolverán el mismo valor. Esto es algo que Cassandra no cumple, es eventualmente consistente.
-* Cuando queremos replicación de las tablas, para hacer frente a caídas.
 * No es la mejor opción para aplicaciones transaccionales o de analíticas relacionales, con queries complejas.
 
 ## Estructura de HBase
