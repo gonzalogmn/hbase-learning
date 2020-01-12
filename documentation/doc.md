@@ -16,7 +16,8 @@ Algunas BBDD columares son HBase, Cassandra o Bigtable.
 * Ejemplo de base de datos orientada a filas:
 Este sistema está pensado para devolver de manera eficiente los datos de una fila, con las menos operaciones necesarias.
 
-Sin embargo, las base de datos orientadas a filas no son eficientes realizando operaciones que impliquen devolver muchas filas, o que tenga que recorrer muchas filas. Por ejemplo, devolver todas las personas con salario entre 20.000 y 30.000 (para esto, la base de datos debe hacer un *full scan*. Lo habitual para mejorar el rendimiento en estos casos es utilizar un índice.
+Sin embargo, las base de datos orientadas a filas no son eficientes realizando operaciones que impliquen devolver muchas filas, o que tenga que recorrer muchas filas para resolver una consulta. Por ejemplo, devolver todas las personas con salario entre 20.000 y 30.000 (para esto, la base de datos debe hacer un *full scan*. 
+Lo habitual para mejorar el rendimiento en estos casos es utilizar un índice.
 
 ![rdbs](./../img/rdbs.png "Row-oriented")
 
