@@ -59,18 +59,6 @@ Cada región contiene todas las filas entre el *row key* inicial y el final, def
 
 ![architecture](./../img/hbase-architecture.png "HBase architecture")
 
-La arquitectura consiste en los siguientes componentes principales:
-
-### HMaster
-
-Actúa monitorizando todos los *Region Server* del cluster, asignandoles las regiones y como interfaz para todos los cambios en metadatos. 
-- Asignación de regiones
-- Load balancing
-- Recuperación de Region Servers
-
-### HBase Regions Servers
-En los Region Servers se sirven los datos.
-
 
 ## Comandos sobre HBase
 
