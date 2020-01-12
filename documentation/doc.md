@@ -24,7 +24,7 @@ Lo habitual para mejorar el rendimiento en estos casos es utilizar un índice.
 * Ejemplo de base de datos orientada a columnas, como HBase:
 Aquí, los datos se almacenan por columnas.
 Podría parecer que un sistema columnar, es como un sistema de filas, pero con un índice por cada columna, pero no es así.
-*An indexed column in a row-store and a regular column in a column-store are very different data structures: an index maps column values to tuple IDs while a column maps tuple IDs to column values*
+*An indexed column in a row-store and a regular column in a column-store are very different data structures: an index maps column values to tuple IDs while a column maps tuple IDs to column values* 
 
 ![columnar](./../img/columnar.png "Column-oriented")
 
@@ -78,7 +78,7 @@ Para conectarnos a HBase mediante shell, ejecutamos `hbase shell` en la máquina
 * Crear tabla: `create 'tablename', 'columnfamilyname'`.
 
 ```
- create 'flights', 'operationalInfo', 'departureInfo' 
+ create 'flights', 'departureInfo', 'arrivalInfo'
 ```
 
 * List de tablas: `list`.
@@ -95,17 +95,22 @@ Las consultas sobre tablas de HBase se realizan con 3 métodos: *Get*, *Put* y *
 * **Get:**   `get 'tablename', 'rowname', {parametros adicionales...}`. Devuelve una sola fila. Los parámetros adicionales son, por ejemplo, TIMERANGE, TIMESTAMP, VERSIONS y FILTERS.
 
 ```
-get 'flights', 'id-myflightid', {COLUMN => 'operationalInfo'}
-get 'flights', 'id-myflightid', {COLUMN => ['operationalInfo', 'departureInfo']}
-get 'flights', 'id-myflightid', {TIMESTAMP => [ts1, ts2]}
+get 'flights', 'IB0521S11102019LCG', {COLUMN => 'departureInfo'}
+get 'flights', 'IB0521S11102019LCG', {COLUMN => ['departureInfo', 'arrivalInfo']}
+get 'flights', 'IB0521S11102019LCG', {TIMESTAMP => [ts1, ts2]}
 ```
 
 * **Put:**   `put 'tablename', 'rowname', 'columnfamily:columnvalue', 'value'`. 
 
+put 'flights', 'IB0521S11102019LCG', 'departureInfo:actualDateTime', '2020-01-01T02:35:00.000Z'
+put 'flights', 'IB0521S11102019LCG', 'departureInfo:airport', 'MAD'
+put 'flights', 'IB0521S11102019LCG', 'arrivalInfo:airport', 'LCG'
+put 'flights', 'IB0521S11102019LCG', 'arrivalInfo:estimatedDateTime', '2020-01-01T04:05:00.000Z'
+
 * **Scan:**   `scan 'tablename', {parametros opcionales...}`.
 
 ```
-scan 'flights', {COLUMNS => ['operationalInfo', 'departureInfo'], LIMIT => 10, STARTROW => 'xyz'}
+scan 'flights', {COLUMNS => ['departureInfo', 'arrivalInfo'], LIMIT => 10, STARTROW => 'IB0521S11102019LCG'}
 ```
 
 * **Count:**   `count 'tablename', CACHE =>1000`.
@@ -136,7 +141,7 @@ Lo más importante a definir es la estructura de la *row key*. Para ello, hay qu
 * La atomicidad se garantiza a nivel de fila. No hay atomicidad garantizada entre filas (no hay transacciones multifila).
 * Las *column qualifiers* son dinámicas y pueden ser definidas en tiempo de escritura.
 
-## Diseño de *rowkey*
+### Diseño de *rowkey*
 
 Hay que saber que en HBase, la unidad de separación es la *column family*.
 
@@ -145,7 +150,7 @@ Hay que saber que en HBase, la unidad de separación es la *column family*.
 ![diseno_rowkey_performance](./../img/diseno_rowkey_performance.png "Diseño")
 
 
-### *Tall-Narrow* vs *Flat-Wide*
+#### *Tall-Narrow* vs *Flat-Wide*
 
 * *Flat-Wide*: una tabla con pocas filas pero muchas columnas.
 ![flat](./../img/flat-wide.png "flat-wide")
