@@ -136,7 +136,7 @@ Es útil hacerse las siguientes preguntas:
 Lo más importante a definir es la estructura de la *row key*. Para ello, hay que definir previamente cómo se va a leer y escribir en la tabla. Para definir el esquema, es importante conocer las siguientes propiedades acerca de HBase:
 
 * La indexación se realiza solo sobre la *key*.
-* Las tablas se almacenan según su *row key*. Cada región en la tabla es responssable de parte del espacio de *row keys*.
+* Las filas se almacenan según su *row key*. Cada región en la tabla es responsable de parte del espacio de *row keys*.
 * Todo en HBase se almacena como array de bytes. No hay tipos.
 * La atomicidad se garantiza a nivel de fila. No hay atomicidad garantizada entre filas (no hay transacciones multifila).
 * Las *column qualifiers* son dinámicas y pueden ser definidas en tiempo de escritura.
