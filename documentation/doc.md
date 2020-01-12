@@ -9,7 +9,7 @@ HBase está desarrollado en Java y se inspira en *Bigtable* de Google
 
 ### ¿Qué es una base de datos columnar o *wide column store*?
 
-Es un tipo de base de datos NoSQL que almacena los datos en columnas en lugar de filas, con el objetivo de poder leer y escribir datos de manera eficiente, acelerando el tiempo que se tarda en devolver el resultado de una consulta.
+Es un tipo de base de datos NoSQL que almacena los datos en columnas en lugar de filas, con el objetivo de poder leer y escribir datos de manera eficiente, reduciendo el tiempo que se tarda en devolver el resultado de una consulta.
 
 Algunas BBDD columares son HBase, Cassandra o Bigtable.
 
