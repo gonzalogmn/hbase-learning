@@ -261,6 +261,18 @@ La *row key* es el ID del usuario seguidor, y cada columna contiene el ID del us
 
 ---
 
+## 6.1 Twitter: primera opción
+
+Una solución es mantener un contador en una columna.
+
+![twitter-1](./img/twitter-1-v2.png "Tabla twitter opción 1 columna")
+
+Y los pasos necesarios para añadir un nuevo usuario a la lista de usuarios seguidos:
+
+![twitter-1](./img/twitter-1-v2-1.png "Tabla twitter opción 1 columna")
+
+---
+
 ## 6.2 Twitter: segunda opción
 
 ![twitter-2](./img/twitter-2-tabla.png "Tabla twitter opción 2")
