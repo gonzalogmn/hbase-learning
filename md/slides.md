@@ -203,19 +203,19 @@ class: center, middle, slide-title
 
 ## 5.1. Diseño de *rowkey*
 
-![diseno_rowkey](./../img/diseno_rowkey.png "Diseño")
+![diseno_rowkey](./img/diseno_rowkey.png "Diseño")
 
-![diseno_rowkey_performance](./../img/diseno_rowkey_performance.png "Diseño")
+![diseno_rowkey_performance](./img/diseno_rowkey_performance.png "Diseño")
 
 ---
 
 # 5.2. *Tall-Narrow* vs *Flat-Wide*
 
 * *Flat-Wide*: una tabla con pocas filas pero muchas columnas.
-![flat](./../img/flat-wide.png "flat-wide")
+![flat](./img/flat-wide.png "flat-wide")
 
 * *Tall-Narrow*: una tabla con pocas columnas pero muchas filas.
-![tall](./../img/tall-narrow.png "tall-narrow")
+![tall](./img/tall-narrow.png "tall-narrow")
 
 ---
 class: center, middle, slide-title
