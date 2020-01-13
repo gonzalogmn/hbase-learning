@@ -267,6 +267,10 @@ Una solución es mantener un contador en una columna.
 
 ![twitter-1](./img/twitter-1-v2.png "Tabla twitter opción 1 columna")
 
+---
+
+## 6.1 Twitter: primera opción
+
 Y los pasos necesarios para añadir un nuevo usuario a la lista de usuarios seguidos:
 
 ![twitter-1](./img/twitter-1-v2-1.png "Tabla twitter opción 1 columna")
