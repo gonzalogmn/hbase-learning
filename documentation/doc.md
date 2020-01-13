@@ -102,10 +102,12 @@ get 'flights', 'IB0521S11102019LCG', {TIMESTAMP => [ts1, ts2]}
 
 * **Put:**   `put 'tablename', 'rowname', 'columnfamily:columnvalue', 'value'`. 
 
+```
 put 'flights', 'IB0521S11102019LCG', 'departureInfo:actualDateTime', '2020-01-01T02:35:00.000Z'
 put 'flights', 'IB0521S11102019LCG', 'departureInfo:airport', 'MAD'
 put 'flights', 'IB0521S11102019LCG', 'arrivalInfo:airport', 'LCG'
 put 'flights', 'IB0521S11102019LCG', 'arrivalInfo:estimatedDateTime', '2020-01-01T04:05:00.000Z'
+```
 
 * **Scan:**   `scan 'tablename', {parametros opcionales...}`.
 
