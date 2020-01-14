@@ -208,6 +208,11 @@ class: center, middle, slide-title
 
 ![diseno_rowkey](./img/diseno_rowkey.png "Diseño")
 
+
+---
+
+## 5.1. Diseño de *rowkey*
+
 ![diseno_rowkey_performance](./img/diseno_rowkey_performance.png "Diseño")
 
 ---
