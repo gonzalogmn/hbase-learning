@@ -143,7 +143,7 @@ hbase shell
 * Crear tabla: `create 'tablename', 'columnfamilyname'`.
 
 ```shell
- create 'flights', 'operationalInfo', 'departureInfo' 
+ create 'flights', 'departureInfo', 'arrivalInfo' 
 ```
 
 * List de tablas: `list`.
@@ -158,17 +158,20 @@ hbase shell
 * **Get:**   `get 'tablename', 'rowname', {parametros adicionales...}`. Devuelve una sola fila. Los parámetros adicionales son, por ejemplo, TIMERANGE, TIMESTAMP, VERSIONS y FILTERS.
 
 ```shell
-get 'flights', 'id-myflightid', {COLUMN => 'operationalInfo'}
-get 'flights', 'id-myflightid', {COLUMN => ['operationalInfo', 'departureInfo']}
-get 'flights', 'id-myflightid', {TIMESTAMP => [ts1, ts2]}
+get 'flights', 'IB0521S11102019LCG', {COLUMN => 'departureInfo'}
+get 'flights', 'IB0521S11102019LCG', {TIMESTAMP => [ts1, ts2]}
 ```
 
 * **Put:**   `put 'tablename', 'rowname', 'columnfamily:columnvalue', 'value'`. 
 
+```shell
+put 'flights', 'IB0521S11102019LCG', 'departureInfo:actualDateTime', '2020-01-01T02:35:00.000Z'
+```
+
 * **Scan:**   `scan 'tablename', {parametros opcionales...}`.
 
 ```shell
-scan 'flights', {COLUMNS => ['operationalInfo', 'departureInfo'], LIMIT => 10, STARTROW => 'xyz'}
+scan 'flights', {COLUMNS => ['departureInfo', 'arrivalInfo'], LIMIT => 10, STARTROW => 'IB0521S11102019LCG'}
 ```
 
 * **Count:**   `count 'tablename', CACHE =>1000`.
@@ -312,6 +315,11 @@ Para solucionarlo tenemos dos opciones:
 ## 6.2 Twitter: segunda opción
 
 .right[![twitter-2-2](./img/twitter-2-2.png "Tabla twitter opción 2.2")]
+
+---
+# Otros
+
+* [Phoenix](https://phoenix.apache.org/)
 
 ---
 
